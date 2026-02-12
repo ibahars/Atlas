@@ -1,4 +1,30 @@
+import { useState } from "react";
+
 const Taskmodal = ({ isOpen, onClose }) => {
+  const initalState = {
+    title: "",
+    description: "",
+    type: "task",
+    status: "todo",
+    priority: "mid",
+  };
+  const [formData, setFormData] = useState(initalState);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    setFormData(initalState);
+    onClose();
+  };
+  
   if (!isOpen) return null;
 
   return (
@@ -15,12 +41,15 @@ const Taskmodal = ({ isOpen, onClose }) => {
           Yeni Görev Ekle
         </h2>
 
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Görev Başlığı
             </label>
             <input
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
               type="text"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
               placeholder="Örn: Raporu tamamla..."
@@ -32,6 +61,9 @@ const Taskmodal = ({ isOpen, onClose }) => {
               Açıklama
             </label>
             <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none h-24 resize-none"
               placeholder="Görev detaylarını buraya yazın..."
             />
@@ -41,7 +73,12 @@ const Taskmodal = ({ isOpen, onClose }) => {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Tür
             </label>
-            <select className="pr-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white cursor-pointer transition-all">
+            <select
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              className="pr-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white cursor-pointer transition-all"
+            >
               {" "}
               <option value="bug">Bug 🐞</option>
               <option value="task">Görev ✅</option>
@@ -52,7 +89,12 @@ const Taskmodal = ({ isOpen, onClose }) => {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Durum
             </label>
-            <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white cursor-pointer transition-all">
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white cursor-pointer transition-all"
+            >
               {" "}
               <option value="todo">Yapılacak</option>
               <option value="progress">Devam Ediliyor</option>
@@ -64,7 +106,12 @@ const Taskmodal = ({ isOpen, onClose }) => {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Öncelik
             </label>
-            <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white cursor-pointer transition-all">
+            <select
+              name="priority"
+              value={formData.priority}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-white cursor-pointer transition-all"
+            >
               {" "}
               <option value="low" className="text-blue-600">
                 Düşük
