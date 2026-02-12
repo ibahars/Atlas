@@ -1,14 +1,20 @@
 import { useState } from "react";
 
-const Taskmodal = ({ isOpen, onClose, onAddTask }) => {
-  const initalState = {
-    title: "",
-    description: "",
-    type: "task",
-    status: "todo",
-    priority: "mid",
-  };
-  const [formData, setFormData] = useState(initalState);
+const initialState = {
+  title: "",
+  description: "",
+  type: "task",
+  status: "todo",
+  priority: "mid",
+};
+const Taskmodal = ({
+  isOpen,
+  onClose,
+  onAddTask,
+  onUpdateTask,
+  editingTask,
+}) => {
+  const [formData, setFormData] = useState(editingTask || initialState);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,9 +27,13 @@ const Taskmodal = ({ isOpen, onClose, onAddTask }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    onAddTask(formData);
-    setFormData(initalState);
+    if (editingTask) {
+      onUpdateTask(formData);
+    } else {
+      onAddTask(formData);
+    }
     onClose();
+    setFormData(initialState);
   };
 
   if (!isOpen) return null;

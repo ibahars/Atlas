@@ -9,6 +9,7 @@ const Home = () => {
     return savedTasks ? JSON.parse(savedTasks) : [];
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingTask, setEditingTask] = useState(null);
 
   const addTask = (newTask) => {
     const taskWithId = { ...newTask, id: Date.now() };
@@ -20,6 +21,18 @@ const Home = () => {
 
   const deleteTask = (id) => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+  };
+
+  const handleEditClick = (task) => {
+    setEditingTask(task);
+    setIsModalOpen(true);
+  };
+
+  const updateTask = (updatedTask) => {
+    setTasks((prev) =>
+      prev.map((task) => (task.id === updatedTask.id ? updatedTask : task)),
+    );
+    setEditingTask(null);
   };
 
   return (
@@ -40,7 +53,12 @@ const Home = () => {
                 {tasks
                   .filter((t) => t.status === "todo")
                   .map((t) => (
-                    <TaskCard key={t.id} task={t} onDelete={deleteTask} />
+                    <TaskCard
+                      key={t.id}
+                      task={t}
+                      onDelete={deleteTask}
+                      onEdit={handleEditClick}
+                    />
                   ))}
               </div>
             </div>
@@ -57,7 +75,12 @@ const Home = () => {
                 {tasks
                   .filter((t) => t.status === "progress")
                   .map((t) => (
-                    <TaskCard key={t.id} task={t} onDelete={deleteTask} />
+                    <TaskCard
+                      key={t.id}
+                      task={t}
+                      onDelete={deleteTask}
+                      onEdit={handleEditClick}
+                    />
                   ))}
               </div>
             </div>
@@ -74,7 +97,12 @@ const Home = () => {
                 {tasks
                   .filter((t) => t.status === "done")
                   .map((t) => (
-                    <TaskCard key={t.id} task={t} onDelete={deleteTask} />
+                    <TaskCard
+                      key={t.id}
+                      task={t}
+                      onDelete={deleteTask}
+                      onEdit={handleEditClick}
+                    />
                   ))}
               </div>
             </div>
@@ -83,9 +111,15 @@ const Home = () => {
       </main>
 
       <Taskmodal
+        key={editingTask ? editingTask.id : "new"}
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false);
+          setEditingTask(null);
+        }}
         onAddTask={addTask}
+        onUpdateTask={updateTask}
+        editingTask={editingTask}
       />
     </div>
   );
