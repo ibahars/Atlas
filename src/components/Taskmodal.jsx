@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Taskmodal = ({ isOpen, onClose }) => {
+const Taskmodal = ({ isOpen, onClose, onAddTask }) => {
   const initalState = {
     title: "",
     description: "",
@@ -21,10 +21,11 @@ const Taskmodal = ({ isOpen, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    onAddTask(formData);
     setFormData(initalState);
     onClose();
   };
-  
+
   if (!isOpen) return null;
 
   return (
