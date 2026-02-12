@@ -1,4 +1,4 @@
-import Home from "./pages/temporary";
+import Home from "./pages/Home";
 function App() {
   return (
     <>
