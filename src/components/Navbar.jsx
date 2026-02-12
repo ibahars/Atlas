@@ -1,4 +1,4 @@
-import Button from "./UI/button";
+import Button from "./UI/Button";
 const Navbar = ({ onAddClick }) => {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center shadow-sm">
