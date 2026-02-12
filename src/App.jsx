@@ -1,3 +1,4 @@
+import Home from "./pages/MainHome";
 function App() {
   return (
     <>
