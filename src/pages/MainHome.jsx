@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import Taskmodal from "../components/Taskmodal";
-import TaskCard from "../components/TaskCard";
+import TaskCard from "../components/Taskcard";
 
 const Home = () => {
   const [tasks, setTasks] = useState(() => {
