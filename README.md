@@ -1,16 +1,51 @@
-# React + Vite
+# Atlas Task Manager (Kanban Board)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern, kullanıcı dostu bir görev yönetim uygulaması. 
 
-Currently, two official plugins are available:
+🚀 **Canlı Demo:** `https://atlastasks.netlify.app/`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Özellikler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Tam CRUD İşlevselliği:** Görevleri oluşturabilir, detaylarını görebilir, düzenleyebilir ve silebilirsiniz.
+* **Dinamik İstatistik Paneli:** Toplam görev sayısı ve durum bazlı (Yapılacak, Devam Eden, Biten) özet verileri anlık olarak takip edebilirsiniz.
+* **Kategori Yönetimi:** Görevlerinizi durumlarına göre (Todo, In Progress, Done) organize edebileceğiniz sütun yapısı.
 
-## Expanding the ESLint configuration
+## 🛠️ Kullanılan Teknolojiler
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **Core:** [React.js](https://reactjs.org/) (Vite Build Tool)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **State Management:** React Hooks (`useState`, `useEffect`)
+* **Deployment:** [Netlify](https://www.netlify.com/)
+
+## 💻 Kurulum ve Çalıştırma
+
+Projeyi yerel ortamınızda çalıştırmak için şu adımları izleyebilirsiniz:
+
+1. **Repoyu klonlayın:**
+```bash
+git clone https://github.com/ibahars/Atlas.git
+
+```
+
+
+2. **Proje dizinine gidin:**
+```bash
+cd atlas
+
+```
+
+
+3. **Gerekli paketleri yükleyin:**
+```bash
+npm install
+
+```
+
+
+4. **Uygulamayı başlatın:**
+```bash
+npm run dev
+
+```
