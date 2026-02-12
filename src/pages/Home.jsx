@@ -1,15 +1,25 @@
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Taskmodal from "../components/taskmodal";
 import TaskCard from "../components/taskcard";
 
 const Home = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("atlas-tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const addTask = (newTask) => {
     const taskWithId = { ...newTask, id: Date.now() };
     setTasks((prev) => [...prev, taskWithId]);
+  };
+  useEffect(() => {
+    localStorage.setItem("atlas-tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  const deleteTask = (id) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
 
   return (
@@ -30,7 +40,7 @@ const Home = () => {
                 {tasks
                   .filter((t) => t.status === "todo")
                   .map((t) => (
-                    <TaskCard key={t.id} task={t} />
+                    <TaskCard key={t.id} task={t} onDelete={deleteTask} />
                   ))}
               </div>
             </div>
@@ -47,7 +57,7 @@ const Home = () => {
                 {tasks
                   .filter((t) => t.status === "progress")
                   .map((t) => (
-                    <TaskCard key={t.id} task={t} />
+                    <TaskCard key={t.id} task={t} onDelete={deleteTask} />
                   ))}
               </div>
             </div>
@@ -64,7 +74,7 @@ const Home = () => {
                 {tasks
                   .filter((t) => t.status === "done")
                   .map((t) => (
-                    <TaskCard key={t.id} task={t} />
+                    <TaskCard key={t.id} task={t} onDelete={deleteTask} />
                   ))}
               </div>
             </div>

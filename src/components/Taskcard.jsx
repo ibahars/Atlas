@@ -1,4 +1,4 @@
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, onDelete }) => {
   const priorityColors = {
     low: "bg-blue-100 text-blue-700",
     mid: "bg-yellow-100 text-yellow-700",
@@ -25,7 +25,7 @@ const TaskCard = ({ task }) => {
       </p>
 
       {/* buttons*/}
-      <div className="flex justify-end gap-2 border-t pt-3 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="flex justify-end gap-2 border-t pt-3 transition-opacity">
         <button className="p-1.5 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
           <svg
             className="w-4 h-4"
@@ -41,7 +41,9 @@ const TaskCard = ({ task }) => {
             />
           </svg>
         </button>
-        <button className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+        <button 
+        onClick={()=>onDelete(task.id)}
+        className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
           <svg
             className="w-4 h-4"
             fill="none"
