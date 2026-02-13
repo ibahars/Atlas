@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AppButton from "./UI/AppButton";
 
 const initialState = {
   title: "",
@@ -40,7 +41,6 @@ const Taskmodal = ({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
-      {/* Arka Plan Karartması */}
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
@@ -137,19 +137,16 @@ const Taskmodal = ({
           </div>
 
           <div className="flex gap-3 justify-end mt-6">
-            <button
-              type="button"
+            <AppButton
               onClick={onClose}
-              className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              Vazgeç
-            </button>
-            <button
-              type="submit"
-              className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
-            >
-              Kaydet
-            </button>
+              children={"Vazgeç"}
+              color={"bg-gray-600"}
+            />
+            <AppButton
+              onClick={onClose}
+              children={"Kaydet"}
+              color={"bg-indigo-600"}
+            />
           </div>
         </form>
       </div>
