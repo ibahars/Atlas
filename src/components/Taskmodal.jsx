@@ -138,15 +138,12 @@ const Taskmodal = ({
 
           <div className="flex gap-3 justify-end mt-6">
             <AppButton
+              type="button"
               onClick={onClose}
               children={"Vazgeç"}
               color={"bg-gray-600"}
             />
-            <AppButton
-              onClick={onClose}
-              children={"Kaydet"}
-              color={"bg-indigo-600"}
-            />
+            <AppButton children={"Kaydet"} color={"bg-indigo-600"} />
           </div>
         </form>
       </div>
